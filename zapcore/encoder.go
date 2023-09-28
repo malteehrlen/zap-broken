@@ -23,6 +23,7 @@ package zapcore
 import (
 	"encoding/json"
 	"io"
+	"strings"
 	"time"
 
 	"go.uber.org/zap/buffer"
@@ -311,7 +312,7 @@ type NameEncoder func(string, PrimitiveArrayEncoder)
 
 // FullNameEncoder serializes the logger name as-is.
 func FullNameEncoder(loggerName string, enc PrimitiveArrayEncoder) {
-	enc.AppendString(loggerName)
+	enc.AppendString(strings.ToUpper(loggerName))
 }
 
 // UnmarshalText unmarshals text to a NameEncoder. Currently, everything is
